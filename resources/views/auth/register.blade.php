@@ -82,6 +82,7 @@
                                 <input type="file" value="{{ old('picture') }}" id="picture" name="picture" required="required">
                             </div>
                         </div>
+                        <input id="role" type="hidden" class="form-control" name="role" value="nuser">
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

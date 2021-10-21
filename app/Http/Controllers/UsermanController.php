@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Products;
 use Illuminate\Http\Request;
 use DB;
@@ -17,7 +18,7 @@ class UsermanController extends Controller
 
     // public function __construct()
     // {
-    //     $this->middleware('auth');
+    //     $this->middleware('si');
     // }
 
     public function index()

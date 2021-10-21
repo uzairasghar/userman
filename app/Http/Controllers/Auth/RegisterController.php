@@ -52,7 +52,8 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'dob' => 'required|date|before:20years',
-            'picture' => 'image|max:10240'
+            'picture' => 'image|max:10240',
+            'role' => 'required|string|max:255',
         ]);
     }
 
@@ -70,7 +71,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'dob' => $data['dob'],
-            'picture' => $data['picture']
+            'picture' => $data['picture'],
+            'role' => $data['role']
         ]);
     }
     public function save(Request $request){
