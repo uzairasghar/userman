@@ -1,146 +1,4 @@
 --
--- PostgreSQL database cluster dump
---
-
-SET default_transaction_read_only = off;
-
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-
---
--- Roles
---
-
-CREATE ROLE postgres;
-ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'md5738d021d4bc194576641fa9936656836';
-
-
-
-
-
-
---
--- Database creation
---
-
-REVOKE CONNECT,TEMPORARY ON DATABASE template1 FROM PUBLIC;
-GRANT CONNECT ON DATABASE template1 TO PUBLIC;
-CREATE DATABASE userman WITH TEMPLATE = template0 OWNER = postgres;
-
-
-\connect postgres
-
-SET default_transaction_read_only = off;
-
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 10.18
--- Dumped by pg_dump version 10.18
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON DATABASE postgres IS 'default administrative connection database';
-
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
--- Name: adminpack; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
-
-
---
--- PostgreSQL database dump complete
---
-
-\connect template1
-
-SET default_transaction_read_only = off;
-
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 10.18
--- Dumped by pg_dump version 10.18
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE template1; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON DATABASE template1 IS 'default template for new databases';
-
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
--- PostgreSQL database dump complete
---
-
-\connect userman
-
-SET default_transaction_read_only = off;
-
---
 -- PostgreSQL database dump
 --
 
@@ -275,7 +133,8 @@ CREATE TABLE public.users (
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     dob character varying(255) NOT NULL,
-    picture character varying(255)
+    picture character varying(255),
+    role character varying
 );
 
 
@@ -351,7 +210,9 @@ INSERT INTO public.products VALUES (2, 'Samsung', 'Galaxy S21', '165000 PKR', NU
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.users VALUES (1, 'Uzair Asghar', 'uzairasghar83@gmail.com', '$2y$10$1C4/qh13V2bzx536MWM94.owzmQFStmJ8h9Ajp64i.erWrgHQwNPO', 'WrE8pzT12LMAOQRdqmnJOpidMoAo7GED60fSGTeePAxKapERCgXbkScchQb8', '2021-10-20 13:44:57', '2021-10-20 13:44:58', '1996-03-08', 'mypp_1634737497.jpg');
+INSERT INTO public.users VALUES (1, 'Uzair Asghar', 'uzairasghar83@gmail.com', '$2y$10$1C4/qh13V2bzx536MWM94.owzmQFStmJ8h9Ajp64i.erWrgHQwNPO', 'U1r7Euqj7l1imSEKamLoxobUzAukm9wstv6k2Csu12VxOydiO88qelBcUO8m', '2021-10-20 13:44:57', '2021-10-20 13:44:58', '1996-03-08', 'mypp_1634737497.jpg', 'admin');
+INSERT INTO public.users VALUES (8, 'Osama', 'osama@gmail.com', '$2y$10$UQpXlm8WRvJoGWgqGEI2uuzsMb0YwrK.AnBXayjD5JhlWlsURINze', '6vzdStl2vf3yeFFrQp1qW9XH9XVOHrbSlZPBqtRStKE71VxYYwSk5R7QnCxy', '2021-10-21 10:11:48', '2021-10-21 10:11:48', '2021-09-29', 'user1_1634811108.jpg', 'nuser');
+INSERT INTO public.users VALUES (9, 'Asim', 'asim@nextgeni.com', '$2y$10$sz2hDk.Pa4ah15TavW6QoupHTqoVUaoaTrqIldzljsuGufHfblQOy', 'qGvHKzl6YxtJPTeY0ttTDbTheRhs23WD62MKeyue2ChEBBPRTRNutsXoMZok', '2021-10-21 11:24:19', '2021-10-21 11:24:19', '2021-08-24', '2_1634815459.jpg', 'nuser');
 
 
 --
@@ -372,7 +233,7 @@ SELECT pg_catalog.setval('public.products_id_seq', 2, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 7, true);
+SELECT pg_catalog.setval('public.users_id_seq', 9, true);
 
 
 --
@@ -416,9 +277,5 @@ CREATE INDEX password_resets_email_index ON public.password_resets USING btree (
 
 --
 -- PostgreSQL database dump complete
---
-
---
--- PostgreSQL database cluster dump complete
 --
 
