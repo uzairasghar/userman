@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="/products/{{$product->id}}" class="btn btn-default">Go Back</a>
+<a href="{{route('productshow',['id' => $product->id])}}" class="btn btn-default">Go Back</a>
     <h1>Edit Product</h1>
-    {!! Form::open(['action' => ['UsermanController@update', $product->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::open(['route' => ['productupdate', $product->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">
             {{Form::label('name', 'Name')}}
             {{Form::text('name', $product->name, ['class' => 'form-control', 'placeholder' => 'name'])}}

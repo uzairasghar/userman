@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="/products" class="btn btn-default">Go Back</a>
+    <a href="{{route('products')}}" class="btn btn-default">Go Back</a>
     <h1>{{$product->name}}</h1>
     <div>
         Model: {!!$product->description!!}
@@ -12,9 +12,9 @@
     <hr>
     <small>Written on {{$product->created_at}}</small>
     <hr>
-            <a href="/products/{{$product->id}}/edit" class="btn btn-default">Edit</a>
+            <a href="{{route('productedit',['id' => $product->id])}}" class="btn btn-default">Edit</a>
 
-            {!!Form::open(['action' => ['UsermanController@destroy', $product->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+            {!!Form::open(['route' => ['productdestroy', $product->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                 {{Form::hidden('_method', 'DELETE')}}
                 {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
             {!!Form::close()!!}

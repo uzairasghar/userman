@@ -3,7 +3,7 @@
 @section('content')
     <h1>Add Product</h1>
     <div class="panel-body">
-        <form class="form-horizontal" method="POST" action="/products">
+        <form class="form-horizontal" method="POST" action="{{route('productstore')}}">
             {{ csrf_field() }}
 
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
