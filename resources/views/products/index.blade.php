@@ -87,6 +87,7 @@
 
     <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>{{ config('app.name', 'Laravel') }}</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
@@ -240,7 +241,12 @@
 
 <script>
     $(document).ready(function() {
-    
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $('#user_table').DataTable({
             processing: true,
             serverSide: true,
@@ -339,7 +345,10 @@
 
 	    $('#ok_button').click(function(){
 	    	$.ajax({
-	    		action_url: "{{ route('productdestroy',['id' => "userid"]) }}",
+	    		// action_url: "{{ route('productdestroy',['id' => "userid"]) }}",
+                method : "Delete",
+                url: "products/"+user_id,
+                dataType: "json",
 	    		beforeSend:function(){
 	    			$('#ok_button').text('Deleting...');
 	    		},

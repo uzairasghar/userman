@@ -30,8 +30,9 @@ Route::group(['middleware' => ['auth','si']], function () {
     Route::get('/products/{id}/edit', 'UsermanController@edit')->name('productedit');
     // Route::resource('products', 'UsermanController');
     Route::put('/products/update', 'UsermanController@update')->name('productupdate');
-    Route::delete('products/{id}', 'UsermanController@destroy')->name('productdestroy');
+   
 });
+Route::delete('products/{id}', 'UsermanController@destroy')->name('productdestroy');
 Route::resource('users', 'UsersController');
 Route::post('register', 'Auth\RegisterController@save');
 Route::get('export', 'UsermanController@export')->name('export');

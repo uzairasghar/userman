@@ -203,8 +203,26 @@ class UsermanController extends Controller
         // $product = DB::table('products')->where('id',$id)->delete();
         // return redirect('/products')->with('success', 'Product Removed');
         
-        $data = Products::findOrFail($id);
-        $data->delete();
+        // $data = Products::findOrFail($id);
+        // $data->delete();
+
+        $student = Products::find($id);
+        if($student)
+        {
+            $student->delete();
+            return response()->json([
+                'status'=>200,
+                'message'=>'Student Deleted Successfully.'
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'status'=>404,
+                'message'=>'No Student Found.'
+            ]);
+        }
+
     }
 
     public function export()
