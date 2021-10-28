@@ -268,7 +268,6 @@
 
         $('#sample_form').on('submit', function(event){
 	    	event.preventDefault();
-            var id= $("input[name=editId]").val();
 	    	var action_url = '';
 
     	    if($('#action').val() == 'Add')
