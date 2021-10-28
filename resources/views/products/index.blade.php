@@ -187,7 +187,8 @@
       		<div class="modal-body">
       			<span id="form_result"></span>
       			<form method="post" id="sample_form" class="form-horizontal">
-      				@csrf
+                    {{-- @method('PUT') --}}
+                    @csrf
       				<div class="form-group">
         				<label class="control-label col-md-4" >Name: </label>
         				<div class="col-md-8">
@@ -269,19 +270,21 @@
         $('#sample_form').on('submit', function(event){
 	    	event.preventDefault();
 	    	var action_url = '';
-
+            var type = '';
     	    if($('#action').val() == 'Add')
     	    {
     	    	action_url = "{{ route('productstore') }}";
+                type = 'POST'
     	    }
             
             if($('#action').val() == 'Edit')
     	    {
     	    	action_url = "{{ route('productupdate',['id' => "id"]) }}";
-    	    }
+                type = 'PUT'
+            }
     	    $.ajax({
     	    	url: action_url,
-    	    	method: "POST",
+    	    	method: type,
     	    	data:$(this).serialize(),
     	    	dataType:"json",
     	    	success:function(data)

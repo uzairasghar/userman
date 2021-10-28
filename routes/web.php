@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth','si']], function () {
     Route::get('/products/{id}', 'UsermanController@show')->name('productshow');
     Route::get('/products/{id}/edit', 'UsermanController@edit')->name('productedit');
     // Route::resource('products', 'UsermanController');
-    Route::post('products/update', 'UsermanController@update')->name('productupdate');
+    Route::put('/products/update', 'UsermanController@update')->name('productupdate');
     Route::delete('products/{id}', 'UsermanController@destroy')->name('productdestroy');
 });
 Route::resource('users', 'UsersController');
