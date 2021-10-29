@@ -31,9 +31,9 @@ class UsermanController extends Controller
         //$products = Products::orderBy('created_at','desc')->paginate(10);
         // $product = Products::orderby('name','asc')->simplePaginate(1);
         // return view('products.index')->with('product', $product);
-        $product = Products::orderBy('name', 'asc');
+        // $product = Products::orderBy('name', 'asc');
         if ($request->ajax()) {
-            $data = Products::latest()->get();
+            $data = Products::latest();
             return DataTables::of($data)
                 // ->addIndexColumn()
                 ->addColumn('action', function($data){
@@ -45,7 +45,7 @@ class UsermanController extends Controller
                 ->make(true);
         }
         
-        return view('products.index')->with('product', $product);
+        return view('products.index');
     }
 
     /**
@@ -206,23 +206,12 @@ class UsermanController extends Controller
         // $data = Products::findOrFail($id);
         // $data->delete();
 
-        $student = Products::find($id);
-        if($student)
+        $data = Products::find($id);
+        if($data)
         {
-            $student->delete();
-            return response()->json([
-                'status'=>200,
-                'message'=>'Student Deleted Successfully.'
-            ]);
+            $data->delete();
+            return response()->json(['success' => 'Data Deleted']);
         }
-        else
-        {
-            return response()->json([
-                'status'=>404,
-                'message'=>'No Student Found.'
-            ]);
-        }
-
     }
 
     public function export()
