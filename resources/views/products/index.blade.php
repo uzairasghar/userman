@@ -178,6 +178,7 @@
         </tbody>
     </table>
 </div>
+<a href="{{ route('export') }}" class="btn btn-primary">Export to Excel/CSV</a>
 <div id="formModal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
