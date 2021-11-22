@@ -25,140 +25,16 @@
 
     <a href="{{ route('export') }}" class="btn btn-primary">Export to Excel/CSV</a> --}}
 
+@include('inc.navbar')
+<title>{{ config('app.name', 'Laravel') }}</title>
+<meta name="csrf-token" content="{{ csrf_token() }}"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>		
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-{{-- 
-<head>
-    <title>Laravel 8|7 Datatables Tutorial</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-</head>
-    
-<div class="container mt-5">
-    <h2 class="mb-4">Laravel 7|8 Yajra Datatables Example</h2>
-    <table class="table table-bordered yajra-datatable">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-
-<script type="text/javascript">
-    $(function () {
-        
-        var table = $('.yajra-datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('products') }}",
-            columns: [
-                {data: 'id', name: 'id'},
-                {data: 'name', name: 'name'},
-                {data: 'description', name: 'description'},
-                {data: 'price', name: 'price'},
-                {
-                    data: 'action', 
-                    name: 'action', 
-                    orderable: true, 
-                    searchable: true
-                },
-            ]
-        });
-        
-    });
-</script>
-@endsection --}}
-
-{{-- <!DOCTYPE html>
-<html> --}}
-
-    <head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-		<title>{{ config('app.name', 'Laravel') }}</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>		
-		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	</head>
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                &nbsp;
-            </ul>
-
-            <ul class="nav navbar-nav">
-                <li><a href="{{route('index')}}">Home</a></li>
-                <li><a href="{{route('about')}}">About</a></li>
-                <li><a href="{{route('services')}}">Services</a></li>
-                <li><a href="{{route('products')}}">Products</a></li>
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
-                @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="/users">Dashboard</a></li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                              document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
-            </ul>
-        </div>
-    </div>
-</nav>
 <div align="right" style="margin-right: 115px;">
     <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
 </div>
@@ -177,8 +53,9 @@
         <tbody>
         </tbody>
     </table>
+    <a href="{{ route('export') }}" class="btn btn-primary">Export to Excel/CSV</a>
 </div>
-<a href="{{ route('export') }}" class="btn btn-primary">Export to Excel/CSV</a>
+
 <div id="formModal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -233,6 +110,7 @@
                 <h4 align="center" style="margin:0;">Are you sure you want to remove this data?</h4>
             </div>
             <div class="modal-footer">
+				<input type="hidden" value="delete" name="_method" />
             	<button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
@@ -281,7 +159,7 @@
     	    if($('#action').val() == 'Add')
     	    {
     	    	action_url = "{{ route('productstore') }}";
-                type = 'POST'
+				type = 'POST'
     	    }
             
             if($('#action').val() == 'Edit')
@@ -337,18 +215,20 @@
 			})
 		});
 
-        var user_id;
+		var id;
 
         $(document).on('click', '.delete', function(){
-	    	user_id = $(this).attr('id');
+	    	id = $(this).attr('id');
 	    	$('#confirmModal').modal('show');
+			alert(id);
 	    });
 
 	    $('#ok_button').click(function(){
+			// var action_url = '';
 	    	$.ajax({
-	    		// action_url: "{{ route('productdestroy',['id' => "userid"]) }}",
-                method : "Delete",
-                url: "products/"+user_id,
+				// action_url: "{{ route('productdestroy',['id' => "106"]) }}",
+                method : "DELETE",
+                url: "products/"+id,
                 dataType: "json",
 	    		beforeSend:function(){
 	    			$('#ok_button').text('Deleting...');

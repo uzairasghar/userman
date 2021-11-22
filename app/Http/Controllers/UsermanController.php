@@ -32,6 +32,7 @@ class UsermanController extends Controller
         // $product = Products::orderby('name','asc')->simplePaginate(1);
         // return view('products.index')->with('product', $product);
         // $product = Products::orderBy('name', 'asc');
+
         if ($request->ajax()) {
             $data = Products::latest();
             return DataTables::of($data)
@@ -71,16 +72,19 @@ class UsermanController extends Controller
         //     'description' => 'required',
         //     'price' => 'required'
         // ]);
+
         // $product = new Products();
         // $product->name = $request->input('name');
         // $product->description = $request->input('description');
         // $product->price = $request->input('price');
         // $product->save();
+
         // $product = DB::table('products')->insert([
         //     'name' => $request->name,
         //     'description' => $request->description,
         //     'price' => $request->price
         // ]);
+
         // return redirect('/products')->with('success', 'Product Added');
 
         $rules = array(
@@ -116,7 +120,7 @@ class UsermanController extends Controller
     public function show($id)
     {
         $product = DB::table('products')->where('id', $id)->first();
-        //$product = Products::find($id);
+        // $product = Products::find($id);
         return view('products.show')->with('product', $product);
     }
 
@@ -129,7 +133,7 @@ class UsermanController extends Controller
     public function edit($id)
     {
         // $product = DB::table('products')->where('id', $id)->first();
-        //$product = Products::find($id);
+        // $product = Products::find($id);
         // return view('products.edit')->with('product', $product);
 
         if(request()->ajax())
@@ -153,6 +157,7 @@ class UsermanController extends Controller
         //     'description' => 'required',
         //     'price' => 'required',
         // ]);
+        
         // $product = Products::find($id);
         // $product->name = $request->input('name');
         // $product->description = $request->input('description');
@@ -165,6 +170,7 @@ class UsermanController extends Controller
         //     'price' => $request->price
         // ]);
         // return redirect('/products')->with('success', 'Product Updated');
+
         $rules = array(
             'name'          => 'required',
             'description'   => 'required',
@@ -210,7 +216,7 @@ class UsermanController extends Controller
         if($data)
         {
             $data->delete();
-            return response()->json(['success' => 'Data Deleted']);
+            return response()->json(['success' => 'Data is Deleted']);
         }
     }
 
